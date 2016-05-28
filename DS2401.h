@@ -40,16 +40,22 @@ public:
 	DS2401(OneWire* _oneWire);
 	bool init();
 	bool isDS2401();
-	uint32_t GetSerial();
+	String GetSerial();
+	void Refresh();
 
 private:
 	OneWire* _wire;
 	void GetData();
 	void IsCRCValid();
+	void DS2401Present();
 	
-
+	byte i;
 	byte _data[8];
+	byte _crcByte;
+	byte _crcCalc;
 	bool _crcValid;
+	bool _ds2401Present;
+	bool _GotData;
 
 protected:
 

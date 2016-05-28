@@ -49,6 +49,7 @@ void setup() {
 
 
 void loop() {
-	ds24.GetSerial();
+	Serial.println(ds24.GetSerial());
 	delay(2000);
+	ds24.Refresh();
 }
