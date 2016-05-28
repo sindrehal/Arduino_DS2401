@@ -22,14 +22,78 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#define DEBUG
+
 #include "DS2401.h"
 
-void DS2401Class::init()
+DS2401::DS2401(OneWire* _oneWire)
 {
-
-
+	_wire = _oneWire;
+	_crcValid = false;
 }
 
+bool DS2401::init()
+{
+	if (_wire->reset())
+	{
+		GetData();
+		return true;
+	}
+	else
+	{
+		return false;
+	} 
+}
 
-DS2401Class DS2401;
+bool DS2401::isDS2401()
+{
+	if (_data[0] == DS2401_FAMILY_CODE)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
+uint32_t DS2401::GetSerial()
+{
+	IsCRCValid();
+
+	if (!_crcValid)
+	{
+		Serial.println("CRC Not Valid!!!");
+		return false;
+	}
+
+	for (int i = 1; i < 6; i++)
+	{
+		Serial.print(_data[i]);
+	}
+}
+
+void DS2401::GetData()
+{
+	_wire->write(DS2401_READ_ROM_COMMAND);
+
+	for (int i = 0; i < 7; i++)
+	{
+		_data[i] = _wire->read();
+	}
+}
+
+void DS2401::IsCRCValid()
+{
+	byte crc = _data[7];
+	byte calc = _wire->crc8(_data, 7);
+
+	if (calc != crc)
+	{
+		_crcValid = false;
+	}
+	else
+	{
+		_crcValid = true;
+	}
+}

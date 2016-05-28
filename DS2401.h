@@ -22,25 +22,43 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+
 #ifndef _DS2401_h
 #define _DS2401_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
+	#include "Arduino.h"
 #else
 	#include "WProgram.h"
 #endif
 
-class DS2401Class
+#include "OneWire-master\OneWire.h"
+
+class DS2401
 {
- protected:
+public:
+	DS2401(OneWire* _oneWire);
+	bool init();
+	bool isDS2401();
+	uint32_t GetSerial();
+
+private:
+	OneWire* _wire;
+	void GetData();
+	void IsCRCValid();
+	
+
+	byte _data[8];
+	bool _crcValid;
+
+protected:
 
 
- public:
-	void init();
 };
 
-extern DS2401Class DS2401;
+
+#define DS2401_READ_ROM_COMMAND		0x33
+#define DS2401_FAMILY_CODE			0x01
 
 #endif
 
