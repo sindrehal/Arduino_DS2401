@@ -7,4 +7,5 @@ This library relies on PaulStoffregen's [OneWire Library](https://github.com/Pau
 ##Tested On:
 - Arduino Uno
 - Arduino Nano
+- Arduino Mega
 - ESP8266-12 with Arduino IDE
