@@ -8,4 +8,5 @@ This library relies on PaulStoffregen's [OneWire Library](https://github.com/Pau
 - Arduino Uno
 - Arduino Nano
 - Arduino Mega
-- ESP8266-12 with Arduino IDE
+- ESP8266-07 with [Arduino Core](https://github.com/esp8266/Arduino)
+- ESP8266-12 with [Arduino Core](https://github.com/esp8266/Arduino)
