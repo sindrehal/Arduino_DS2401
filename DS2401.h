@@ -32,7 +32,7 @@ SOFTWARE.
 	#include "WProgram.h"
 #endif
 
-#include "OneWire-master\OneWire.h"
+#include <OneWire.h>
 
 class DS2401
 {

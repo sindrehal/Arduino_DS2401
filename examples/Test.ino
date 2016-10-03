@@ -5,7 +5,7 @@
 
 #define DEBUG
 
-#include "OneWire-master\OneWire.h"
+#include <OneWire.h>
 #include "DS2401.h"
 
 OneWire oneWire(2);
