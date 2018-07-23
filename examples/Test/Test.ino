@@ -1,6 +1,6 @@
 /*
  Name:		Test.ino
- Author:	Sindre Halbjørhus
+ Author:	Sindre HalbjÃ¸rhus
 */
 
 #define DEBUG
